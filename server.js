@@ -3,8 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const sendEmail = require("./utils/sendEmail");
-const fs = require('fs');
-const PDFDocument = require('pdfkit');
+const fs = require("fs");
+const PDFDocument = require("pdfkit");
 const {Registrationinvoice} =require("./Invoice/Registrationinvoice")
 
 //const fs = require('fs');

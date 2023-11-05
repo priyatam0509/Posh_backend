@@ -35,6 +35,13 @@ function generateHeader(doc) {
 		.text('Gurugram, Haryana 122001', 200, 95, { align: 'right' })
 		.moveDown();
 }
+function formatDate(date) {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+}
 
 
 function generateCustomerInformation(doc, invoice) {
@@ -97,17 +104,18 @@ function generateInvoiceTable(doc, invoice) {
 	for (i = 0; i < invoice.data.length; i++) {
 		console.log('invoice.data: ', invoice.data[i]);
 	const position = invoiceTableTop + (i + 1) * 30;
+	const expiryDate = formatDate(new Date(invoice.data[i].expiryDate));
+
 
 	  generateTableRow(
-		doc,
-		position,
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		""
+		    doc,
+            position,
+            "",
+            expiryDate,
+            formatCurrency(invoice.data[i].amount),
+            "0",
+            "0",
+            formatCurrency(invoice.data[i].amount)
 	  );
   
 	  //generateHr(doc, position + 20);
